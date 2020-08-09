@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white12,
       appBar: AppBar(
         title: Text("\$ Conversor de Moedas \$"),
         backgroundColor: Colors.amber,
