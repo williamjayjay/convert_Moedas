@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-const request = "https://api.hgbrasil.com/finance?format=json&key=YOU_API";
+const request = "https://api.hgbrasil.com/finance?format=json&key=940327d6";
 
 void main() async {
 
@@ -47,18 +47,40 @@ class _HomeState extends State<Home> {
   double dolar;
   double euro;
 
+  void _clearAll(){
+    realController.text = "";
+    dolarController.text = "";
+    euroController.text = "";
+  }
+
   void _realChanged(String text){
-  print(text);
+    if(text.isEmpty) {
+      _clearAll();
+      return;
+    }
+  double real = double.parse(text);
+  dolarController.text = (real/dolar).toStringAsFixed(2);
+  euroController.text = (real/euro).toStringAsFixed(2);
   }
 
   void _dolarChanged(String text){
-    print(text);
-
+    if(text.isEmpty) {
+      _clearAll();
+      return;
+    }
+    double dolar = double.parse(text);
+    realController.text = (dolar * this.dolar).toStringAsFixed(2);
+    euroController.text = (dolar * this.dolar / euro).toStringAsFixed(2);
   }
 
   void _euroChanged(String text){
-    print(text);
-
+    if(text.isEmpty) {
+      _clearAll();
+      return;
+    }
+    double euro = double.parse(text);
+    realController.text = (euro * this.euro).toStringAsFixed(2);
+    dolarController.text = (euro * this.euro / dolar).toStringAsFixed(2);
   }
 
   @override
